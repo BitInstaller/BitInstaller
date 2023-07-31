@@ -1,0 +1,16 @@
+# list currently installed drives
+diskutil list
+
+# format disk, try MBR if GPT does not work
+try:
+    diskutil eraseDisk MS-DOS "WIN10" GPT {YOUR DISK}
+except:
+    diskutil eraseDisk MS-DOS "WIN10" MBR /dev/disk2
+
+hdiutil mount {YOUR ISO}
+
+# copy everything except install.wim, >4gb
+rsync -vha --exclude=sources/install.wim /Volumes/CCCOMA_X64FRE_EN-US_DV9/* /Volumes/WIN10
+
+#use wimlib to split .wim file into parts
+wimlib-imagex split /Volumes/CCCOMA_X64FRE_EN-US_DV9/sources/install.wim /Volumes/WIN10/sources/install.swm 3800 #parts of 3.8GB each
