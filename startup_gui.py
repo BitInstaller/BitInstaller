@@ -1,3 +1,5 @@
+from bitinstaller.graphics import RoundedRectangle
+
 import tkinter as tk
 from tkinter import ttk, NSEW, NS, PhotoImage, Label
 from tkinter.ttk import Combobox
@@ -5,55 +7,6 @@ import time
 
 root = tk.Tk()
 root.configure(bg="#0E0E0E")
-
-
-class RoundedRectangle(tk.Canvas):
-    def __init__(self, master, x1, y1, x2, y2, corner_radius, **kwargs):
-        super().__init__(master, **kwargs)
-
-        self.create_arc(
-            x1,
-            y1,
-            x1 + 2 * corner_radius,
-            y1 + 2 * corner_radius,
-            start=90,
-            extent=90,
-            style=tk.ARC,
-        )
-        self.create_arc(
-            x2 - 2 * corner_radius,
-            y1,
-            x2,
-            y1 + 2 * corner_radius,
-            start=0,
-            extent=90,
-            style=tk.ARC,
-        )
-        self.create_arc(
-            x1,
-            y2 - 2 * corner_radius,
-            x1 + 2 * corner_radius,
-            y2,
-            start=180,
-            extent=90,
-            style=tk.ARC,
-        )
-        self.create_arc(
-            x2 - 2 * corner_radius,
-            y2 - 2 * corner_radius,
-            x2,
-            y2,
-            start=270,
-            extent=90,
-            style=tk.ARC,
-        )
-
-        self.create_line(x1 + corner_radius, y1, x2 - corner_radius, y1)
-        self.create_line(x1 + corner_radius, y2, x2 - corner_radius, y2)
-        self.create_line(x1, y1 + corner_radius, x1, y2 - corner_radius)
-        self.create_line(x2, y1 + corner_radius, x2, y2 - corner_radius)
-
-        self.grid(row=0, column=0)
 
 
 rounded_rect = RoundedRectangle(
