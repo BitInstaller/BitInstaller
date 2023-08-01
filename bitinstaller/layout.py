@@ -9,7 +9,17 @@ themeConfig = {
         "selectbackground": "#0E0E0E",
         "lightcolor": "#0E0E0E",
         "bordercolor": "#0E0E0E",
-    }
+    },
+    "TScrollbar": {
+        "troughcolor": "#0E0E0E",
+        "bordercolor": "#0E0E0E",
+        "background": "#0E0E0E",
+        "arrowcolor": "#0E0E0E",
+        "gripcount": 0,
+        "bordercolor": "#0E0E0E",
+        "darkcolor": "#0E0E0E",
+        "lightcolor": "#0E0E0E",
+    },
 }
 
 UIRectdata = {
@@ -18,13 +28,25 @@ UIRectdata = {
     "x2": 230,
     "y2": 120,
     "corner_radius": 7,
-    "bg":"#0E0E0E",
-    "highlightbackground":"#0E0E0E",
-    "highlightcolor":"#0E0E0E",
+    "bg": "#0E0E0E",
+    "highlightbackground": "#0E0E0E",
+    "highlightcolor": "#0E0E0E",
 }
 
+scrollbarLayout = (
+    "TScrollbar",
+    [
+        (
+            "Scrollbar.trough",
+            {
+                "children": [("Scrollbar.thumb", {"expand": "1", "sticky": "nswe"})],
+                "sticky": "nswe",
+            },
+        )
+    ],
+)
 
-themeLayout = (
+comboboxLayout = (
     "Mystyle.TCombobox",
     [
         (
@@ -59,4 +81,3 @@ themeLayout = (
         ),
     ],
 )
-

@@ -1,6 +1,7 @@
 from bitinstaller.graphics import RoundedRectangle
 from bitinstaller.layout import themeConfig
-from bitinstaller.layout import themeLayout
+from bitinstaller.layout import comboboxLayout
+from bitinstaller.layout import scrollbarLayout
 from bitinstaller.layout import UIRectdata
 
 import tkinter as tk
@@ -16,7 +17,22 @@ UIRectdata.update({"master": root})
 stl = ttk.Style()
 stl.theme_use("clam")
 stl.configure("TCombobox", **themeConfig["TCombobox"])
-stl.layout(*themeLayout)
+stl.map("TScrollbar",
+          # Apply the same settings for normal, active, and hover states
+          background=[('active', '#454545'), ('!active', '#454545')],
+          arrowcolor=[('active', '#0E0E0E'), ('!active', '#0E0E0E')],
+          gripcount=[('active', 0), ('!active', 0)],
+          troughcolor=[('active', '#0E0E0E'), ('!active', '#0E0E0E')],
+          bordercolor=[('active', '#454545'), ('!active', '#454545')],
+          darkcolor=[('active', '#454545'), ('!active', '#454545')],
+          lightcolor=[('active', '#454545'), ('!active', '#454545')],
+          )
+
+root.option_add('*TCombobox*Listbox.background' % root, '#0E0E0E')
+
+stl.layout(*comboboxLayout)
+stl.layout(*scrollbarLayout)
+
 stl.map("TCombobox", background=[("active", "#0E0E0E")], arrowsize=[("active", 15)])
 
 comboBoxRect = RoundedRectangle(**UIRectdata)
