@@ -5,12 +5,14 @@ import re
 class GetDiskInfo:
     def __init__(self):
         self.currentos = platform.system()
+        self.formattedDriveData = []
         self.driveSizes = []
         self.driveNames = []
         self.driveData = {}
 
         if self.currentos == "Darwin":  # macos returns "Darwin"
             self.grabMacosDisks()
+            self.formatDriveData()
 
     def grabMacosDisks(self):
         diskName_re = r"(/dev/disk\d+)\s"  # Grab the location of the disks
@@ -40,6 +42,15 @@ class GetDiskInfo:
             self.driveData.update(addon)
 
         return self.driveData
+    
+    def formatDriveData(self):
+        for drive in self.driveData:
+            self.formattedDriveData.append(drive + "   " + self.driveData[drive])
+        return self.formattedDriveData
+
 
 if __name__ == '__main__':
+    print("RAW")
     print(GetDiskInfo().driveData)
+    print("FORMATTED")
+    print(GetDiskInfo().formattedDriveData)

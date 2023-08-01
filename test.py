@@ -4,24 +4,15 @@ from tkinter import ttk
 # Create the main application window
 root = tk.Tk()
 root.geometry("300x200")
+root.configure(bg="#0E0E0E")
 
 # Create a custom style for the Combobox
 style = ttk.Style()
 style.theme_use("clam")
-style.theme_create("my_custom_style", parent="alt", settings={
-    "TCombobox": {
-        "configure": {"selectbackground": "#0E0E0E", "fieldbackground": "#0E0E0E"},
-        "map": {
-            "background": [("readonly", "#0E0E0E"), ("!disabled", "#0E0E0E")],
-            "foreground": [("readonly", "#0E0E0E"), ("!disabled", "#0E0E0E")]
-        }
-    },
-    "TScrollbar": {
-        "configure": {"troughcolor": "#0E0E0E", "bordercolor": "#0E0E0E", "background": "#0E0E0E"}
-    }
-})
+style.theme_create("my_custom_style", parent="clam")
 style.theme_use("my_custom_style")
-
+root.option_add('*TCombobox*Listbox.background' % root, '#0E0E0E')
+style.configure("ComboboxPopdownFrame", borderwidth=0)
 
 # Create a Combobox using the custom style
 listbox = ttk.Combobox(
