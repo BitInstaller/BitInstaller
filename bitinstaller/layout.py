@@ -20,6 +20,13 @@ themeConfig = {
         "darkcolor": "#0E0E0E",
         "lightcolor": "#0E0E0E",
     },
+    "Horizontal.TProgressbar": {
+        "troughcolor": "#0E0E0E",
+        "background": "#1E90FF",
+        "bordercolor": "#0E0E0E",
+        "lightcolor": "#0E0E0E",
+        "darkcolor": "#0E0E0E",
+    },
 }
 
 UIRectdata = {

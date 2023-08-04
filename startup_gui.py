@@ -1,4 +1,5 @@
 from bitinstaller.graphics import RoundedRectangle
+from bitinstaller.graphics import CleanProgressBar
 from bitinstaller.diskinfo import GetDiskInfo
 from bitinstaller.system import getFileLocation
 from bitinstaller.layout import themeConfig
@@ -19,6 +20,9 @@ UIRectdata.update({"master": root})
 stl = ttk.Style()
 stl.theme_use("clam")
 stl.configure("TCombobox", **themeConfig["TCombobox"])
+stl.configure("Horizontal.TProgressbar", **themeConfig["Horizontal.TProgressbar"])
+
+
 stl.map(
     "TScrollbar",
     # Apply the same settings for normal, active, and hover states
@@ -55,7 +59,7 @@ selectFileLabel.bind("<Button-1>", lambda e: print(getFileLocation()))
 flashDiskLabel = Label(root, text="Flash!", bg="#0E0E0E")
 flashDiskLabel.config(font=("Courier", 14))
 flashDiskLabel.grid(row=0, column=2)
-
+flashDiskLabel.bind("<Button-1>", lambda e: print("Flashing File!"))
 # create listbox object
 listbox = Combobox(
     root,
@@ -67,5 +71,9 @@ listbox = Combobox(
 listbox["values"] = tuple(GetDiskInfo().formattedDriveData)
 
 listbox.grid(row=0, column=0)
+
+bar = CleanProgressBar(root)
+
+bar.updateProgressBar(50)
 
 root.mainloop()
