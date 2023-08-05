@@ -3,11 +3,11 @@ from tkinter import ttk
 import time
 
 root = tk.Tk()
-root.configure(bg="#0E0E0E")
+root.configure(bg="#232729")
 
 # Create a Frame to hold the progress bar
 frame = tk.Frame(root)
-frame.configure(bg="#0E0E0E")
+frame.configure(bg="#232729")
 frame.pack(side="bottom")
 
 stl = ttk.Style()
@@ -16,11 +16,11 @@ stl.theme_use("clam")
 
 stl.configure(
     "Horizontal.TProgressbar",
-    troughcolor="#0E0E0E",
+    troughcolor="#232729",
     background="#1E90FF",
-    bordercolor="#0E0E0E",
-    lightcolor="#0E0E0E",
-    darkcolor="#0E0E0E",
+    bordercolor="#232729",
+    lightcolor="#232729",
+    darkcolor="#232729",
 )
 
 var_5 = tk.IntVar(value=0)
@@ -35,7 +35,7 @@ progressbar = ttk.Progressbar(
 
 number_label = tk.Label(frame, textvariable=var_5)
 
-number_label.configure(bg="#0E0E0E")
+number_label.configure(bg="#232729")
 
 number_label.pack(side='left')
 

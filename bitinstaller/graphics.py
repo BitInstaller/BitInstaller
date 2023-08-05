@@ -17,6 +17,7 @@ class RoundedRectangle(Canvas):
             start=90,
             extent=90,
             style=ARC,
+            outline = "#499BD8"
         )
         self.create_arc(
             x2 - 2 * corner_radius,
@@ -26,6 +27,7 @@ class RoundedRectangle(Canvas):
             start=0,
             extent=90,
             style=ARC,
+            outline = "#499BD8"
         )
         self.create_arc(
             x1,
@@ -35,6 +37,7 @@ class RoundedRectangle(Canvas):
             start=180,
             extent=90,
             style=ARC,
+            outline = "#499BD8"
         )
         self.create_arc(
             x2 - 2 * corner_radius,
@@ -44,12 +47,13 @@ class RoundedRectangle(Canvas):
             start=270,
             extent=90,
             style=ARC,
+            outline = "#499BD8"
         )
 
-        self.create_line(x1 + corner_radius, y1, x2 - corner_radius, y1)
-        self.create_line(x1 + corner_radius, y2, x2 - corner_radius, y2)
-        self.create_line(x1, y1 + corner_radius, x1, y2 - corner_radius)
-        self.create_line(x2, y1 + corner_radius, x2, y2 - corner_radius)
+        self.create_line(x1 + corner_radius, y1, x2 - corner_radius, y1, fill = "#499BD8")
+        self.create_line(x1 + corner_radius, y2, x2 - corner_radius, y2, fill = "#499BD8")
+        self.create_line(x1, y1 + corner_radius, x1, y2 - corner_radius, fill = "#499BD8")
+        self.create_line(x2, y1 + corner_radius, x2, y2 - corner_radius, fill = "#499BD8")
 
         return self
 
@@ -68,11 +72,11 @@ class CleanProgressBar(Progressbar):
         )
         self.configure()
         number_label = Label(master, textvariable=self.progress)
-        number_label.configure(bg="#0E0E0E")
+        number_label.configure(bg="#232729")
         number_label.grid(row=1, column=0, padx=0, pady=0, sticky="e")
 
     def configure(self):
-        self.percentage.configure(bg="#0E0E0E")
+        self.percentage.configure(bg="#232729")
         #self.percentage.pack(side='left')
         self.progressbar.grid(row=1, column=1, padx=0, pady=0)
         #self.master.place(relx=0.5, rely=1,anchor="s")

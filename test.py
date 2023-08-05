@@ -4,14 +4,14 @@ from tkinter import ttk
 # Create the main application window
 root = tk.Tk()
 root.geometry("300x200")
-root.configure(bg="#0E0E0E")
+root.configure(bg="#232729")
 
 # Create a custom style for the Combobox
 style = ttk.Style()
 style.theme_use("clam")
 style.theme_create("my_custom_style", parent="clam")
 style.theme_use("my_custom_style")
-root.option_add('*TCombobox*Listbox.background' % root, '#0E0E0E')
+root.option_add('*TCombobox*Listbox.highlightbackground' % root, '#232729')
 style.configure("ComboboxPopdownFrame", borderwidth=0)
 
 # Create a Combobox using the custom style
