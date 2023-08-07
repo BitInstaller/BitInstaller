@@ -1,8 +1,7 @@
-from bitinstaller.frames.StartupFrame import StartupFrame
-
 import tkinter as tk
 from tkinter import Label, Frame
 from PIL import Image, ImageTk
+from bitinstaller.frames.StartupFrame import StartupFrame
 
 __author__ = "SGK"
 __license__ = "MIT"
@@ -14,26 +13,31 @@ class BitInstaller(tk.Tk):
         super().__init__()
         self.title("BitInstaller " + __version__)
         self.configure(bg="#232729")
-        startDisplayFrame = Frame(self)
+
+        self.configureUI()
+
+    def configureUI(self):
+        start_display_frame = Frame(self)
 
         # Logo
         image = Image.open("logo.png")
-        resize_image = image.resize((70, 70))
-        img = ImageTk.PhotoImage(resize_image)
-        logoImageLabel = Label(
-            startDisplayFrame, image=img, highlightthickness=0, borderwidth=0
+        resized_image = image.resize((70, 70))
+        self.img = ImageTk.PhotoImage(resized_image)
+        logo_image_label = Label(
+            start_display_frame, image=self.img, highlightthickness=0, borderwidth=0
         )
-        logoImageLabel.grid(row=0, column=1, sticky="w", pady=10)
-        txt = Label(startDisplayFrame, text="BitInstaller " + __version__, background="#232729")
+        logo_image_label.grid(row=0, column=1, sticky="w", pady=10)
+        txt = Label(start_display_frame, text="BitInstaller " + __version__, background="#232729")
         txt.config(font=("Helvetica bold", 26))
         txt.grid(row=0, column=1, sticky="e")
         # Logo
 
-        StartupFrame(startDisplayFrame)
+        StartupFrame(start_display_frame, self.receiveDataFromPipe)
 
-        startDisplayFrame.grid()
+        start_display_frame.grid()
 
-        startDisplayFrame.mainloop()
+    def receiveDataFromPipe(self, data_pipe):  # handle inputs from hosted frame
+        print("RECEIVED: ", data_pipe)
 
 if __name__ == '__main__':
-    BitInstaller()
+    BitInstaller().mainloop()
