@@ -41,6 +41,18 @@ UIRectdata = {
     "outline": "#499BD8"
 }
 
+InvisibleUIRectdata = {
+    "x1": 60,
+    "y1": 80,
+    "x2": 230,
+    "y2": 120,
+    "corner_radius": 7,
+    "bg": "#232729",
+    "highlightbackground": "#232729",
+    "highlightcolor": "#232729",
+    "outline": "#232729"
+}
+
 scrollbarLayout = (
     "TScrollbar",
     [

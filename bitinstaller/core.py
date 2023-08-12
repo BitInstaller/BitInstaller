@@ -6,6 +6,21 @@ class InstallationEngine:
         self.selectedISO = selectedISOPath
         self.selectedDrive = selectedDrive
 
+        self.mountedISO = ""
+
+    def splitWimfile(self):
+        self.copyISOCommand = subprocess.Popen(
+                ["wimlib-imagex", "split", self.mountedISO + "/sources/install.wim", "/Volumes/WIN10/sources/install.swm", "3800"], stdout=subprocess.PIPE
+        )
+        self.copyOutput, self.copyError = self.copyISOCommand.communicate()
+
+
+    def copyISOFiles(self):
+        self.copyISOCommand = subprocess.Popen(
+                ["rsync", "-vha", "--exclude=sources/install.wim", self.mountedISO], stdout=subprocess.PIPE
+        )
+        self.copyOutput, self.copyError = self.copyISOCommand.communicate()
+
     def mountSelectedISO(self):
         
         self.mountISOCommand = subprocess.Popen(
@@ -14,7 +29,8 @@ class InstallationEngine:
         self.mountOutput, self.mountError = self.mountISOCommand.communicate()
         
         parts = self.mountOutput.split()  # Split the string using default whitespace delimiter
-        last_part = parts[-1]  # Select the last element of the list
+        self.mountedISO = parts[-1]  # Select the last element of the list
+        del parts
 
     def formatDrive(self):
         """
