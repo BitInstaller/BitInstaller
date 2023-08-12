@@ -4,8 +4,9 @@ from tkinter import ARC
 
 
 class RoundedRectangle(Canvas):
-    def __init__(self, master, x1, y1, x2, y2, corner_radius, **kwargs):
+    def __init__(self, master, x1, y1, x2, y2, corner_radius, outline, **kwargs):
         super().__init__(master, **kwargs)
+        self.outline = outline
         self.createRoundedRectangle(master, x1, y1, x2, y2, corner_radius, **kwargs)
 
     def createRoundedRectangle(self, master, x1, y1, x2, y2, corner_radius, **kwargs):
@@ -17,7 +18,7 @@ class RoundedRectangle(Canvas):
             start=90,
             extent=90,
             style=ARC,
-            outline = "#499BD8"
+            outline = self.outline
         )
         self.create_arc(
             x2 - 2 * corner_radius,
@@ -27,7 +28,7 @@ class RoundedRectangle(Canvas):
             start=0,
             extent=90,
             style=ARC,
-            outline = "#499BD8"
+            outline = self.outline
         )
         self.create_arc(
             x1,
@@ -37,7 +38,7 @@ class RoundedRectangle(Canvas):
             start=180,
             extent=90,
             style=ARC,
-            outline = "#499BD8"
+            outline = self.outline
         )
         self.create_arc(
             x2 - 2 * corner_radius,
@@ -47,13 +48,13 @@ class RoundedRectangle(Canvas):
             start=270,
             extent=90,
             style=ARC,
-            outline = "#499BD8"
+            outline = self.outline
         )
 
-        self.create_line(x1 + corner_radius, y1, x2 - corner_radius, y1, fill = "#499BD8")
-        self.create_line(x1 + corner_radius, y2, x2 - corner_radius, y2, fill = "#499BD8")
-        self.create_line(x1, y1 + corner_radius, x1, y2 - corner_radius, fill = "#499BD8")
-        self.create_line(x2, y1 + corner_radius, x2, y2 - corner_radius, fill = "#499BD8")
+        self.create_line(x1 + corner_radius, y1, x2 - corner_radius, y1, fill = self.outline)
+        self.create_line(x1 + corner_radius, y2, x2 - corner_radius, y2, fill = self.outline)
+        self.create_line(x1, y1 + corner_radius, x1, y2 - corner_radius, fill = self.outline)
+        self.create_line(x2, y1 + corner_radius, x2, y2 - corner_radius, fill = self.outline)
 
         return self
 

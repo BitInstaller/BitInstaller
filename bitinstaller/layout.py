@@ -38,6 +38,7 @@ UIRectdata = {
     "bg": "#232729",
     "highlightbackground": "#232729",
     "highlightcolor": "#232729",
+    "outline": "#499BD8"
 }
 
 scrollbarLayout = (

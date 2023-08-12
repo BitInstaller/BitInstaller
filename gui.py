@@ -1,6 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, Label
 import time
+from PIL import Image, ImageTk
+
 
 root = tk.Tk()
 root.configure(bg="#232729")
@@ -24,6 +26,34 @@ stl.configure(
 )
 
 var_5 = tk.IntVar(value=0)
+
+
+
+
+
+# Logo
+image = Image.open("logo.png")
+resized_image = image.resize((70, 70))
+img = ImageTk.PhotoImage(resized_image)
+logo_image_label = Label(
+    frame, image=img, highlightthickness=0, borderwidth=0
+)
+logo_image_label.pack()
+logo_image_label.place(relx=0.5, rely=1,anchor="n")
+txt = Label(
+    frame,
+    text="BitInstaller",
+    background="#232729",
+)
+txt.config(font=("Helvetica bold", 26))
+txt.pack()
+# Logo
+
+
+
+
+
+
 
 progressbar = ttk.Progressbar(
     frame,
