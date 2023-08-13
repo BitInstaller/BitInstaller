@@ -3,6 +3,8 @@ The Official BitInstaller Repository. Create Windows Installation Media On MacOS
 
 ![App Screenshot](https://raw.githubusercontent.com/ShoneGK/BitInstaller/main/github/Screenshot.png?token=GHSAT0AAAAAACERDHEBHRC3MEZY4Y6VRKXIZGYMZTA)
 
+WARNING: POORLY WRITTEN CODE AHEAD
+
 **Project Description:**
 
   BitInstaller is a basic GUI application that burns windows ISO's on MacOS
