@@ -34,7 +34,7 @@ To install BitInstaller on your macOS system, follow these simple steps:
 1. Launch BitInstaller.
 2. Select the Windows ISO file you wish to burn.
 3. Choose your target storage media (e.g., USB drive).
-4. Sit back and wait
+4. Sit back and wait, this can take up to half an hour depending on your device
 
 **Future Developments:**
 
