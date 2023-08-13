@@ -1,5 +1,14 @@
 import subprocess
+import os
 
+"""
+Install Order
+Format selected drive
+Mount selected ISO
+Copy ISO files
+Split Wim File
+
+"""
 
 class InstallationEngine:
     def __init__(self, selectedISOPath, selectedDrive):
@@ -14,12 +23,13 @@ class InstallationEngine:
         )
         self.copyOutput, self.copyError = self.copyISOCommand.communicate()
 
-
     def copyISOFiles(self):
-        self.copyISOCommand = subprocess.Popen(
-                ["rsync", "-vha", "--exclude=sources/install.wim", self.mountedISO], stdout=subprocess.PIPE
-        )
-        self.copyOutput, self.copyError = self.copyISOCommand.communicate()
+        
+        os.system(f"rsync -vha --exclude=sources/install.wim {self.mountedISO}/* /Volumes/WIN10")
+        #self.copyISOCommand = subprocess.Popen(
+        #        [f"rsync -vha --exclude=sources/install.wim+{self.mountedISO}+/* /Volumes/WIN10"], stdout=subprocess.PIPE
+        #)
+        #self.copyOutput, self.copyError = self.copyISOCommand.communicate()
 
     def mountSelectedISO(self):
         
@@ -30,6 +40,7 @@ class InstallationEngine:
         
         parts = self.mountOutput.split()  # Split the string using default whitespace delimiter
         self.mountedISO = parts[-1]  # Select the last element of the list
+        self.mountedISO = self.mountedISO.decode('utf-8')
         del parts
 
     def formatDrive(self):
@@ -37,12 +48,6 @@ class InstallationEngine:
         Attempts to format the drive
         in GPT and tries MBR if GPT where
         to fail
-
-        
-        Takes type of string ex:"/dev/drive0"
-
-        Returns True if execution was successful
-        Returns False if execution resulted in failure
         """
         try:
             self.formatDiskCommand = subprocess.Popen(

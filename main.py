@@ -3,10 +3,12 @@ from tkinter import Label, Frame
 from PIL import Image, ImageTk
 from bitinstaller.frames.StartupFrame import StartupFrame
 from bitinstaller.frames.InstallationFrame import InstallerFrame
+from bitinstaller.frames.finalFrame import InstalledFrame
 
 from bitinstaller.core import InstallationEngine
 from tkinter.messagebox import askyesno
 from tkinter.messagebox import showerror
+import threading
 
 
 __author__ = "SGK"
@@ -28,29 +30,59 @@ class BitInstaller(tk.Tk):
 
     def runStartupFrame(self):
         self.start_display_frame = Frame(self)
-
         self.renderLogo(self.start_display_frame)
 
-        #StartupFrame(self.start_display_frame, self.moveToConfirmation)
-        InstallerFrame(self.start_display_frame)
+        StartupFrame(self.start_display_frame, self.moveToConfirmation)
+        #InstalledFrame(self.start_display_frame)
+
         self.start_display_frame.grid()
 
     def runConfirmationNotification(self):
         answer = askyesno("Warning", "WARNING: ALL OF THE DATA ON THE TARGET DRIVE WILL BE DESTROYED!, ARE YOU SURE YOU WANT TO CONTENUE")
         print(answer)
-
+        
         if(answer == True):
+            installerThread = threading.Thread(target=self.beginInstallation)
+            installerThread.start()
+            return
+
+        else:
+            return
+
+    def beginInstallation(self):
             print(self.selectedDrive)
             self.installEngine = InstallationEngine(self.selectedISO, self.selectedDrive)
             self.start_display_frame.destroy()
             # WARNING: SHOW NEW FRAME BEFORE BEGINING INSTALLATION
             
+            self.installingFrame = Frame(self)
+            self.renderLogo(self.installingFrame)
+
+            self.installFrame = InstallerFrame(self.installingFrame)
+            self.installFrame.updateInstallMessage()            
+            self.installingFrame.grid()
+
+            # REAL INSTALLATION PART
 
             self.installEngine.mountSelectedISO()
+            print(self.installEngine.mountedISO+"/*")
+            
+            
             self.installEngine.formatDrive()
-        else:
-            return
+            self.installEngine.copyISOFiles()
+            self.after(int(2*1000)) # debug
 
+            self.installFrame.updateInstallStage()
+            self.installFrame.updateInstallMessage()
+
+            self.installEngine.splitWimfile()
+
+
+            #self.after(int(2*1000)) # debug
+
+            self.installFrame.destroy()
+
+            InstalledFrame(self.installingFrame)
 
     def moveToConfirmation(self, data_pipe):  # handle inputs from hosted frame
         print("RECEIVED: ", data_pipe)
@@ -76,6 +108,9 @@ class BitInstaller(tk.Tk):
         txt = Label(master, text="BitInstaller " + __version__, background="#232729")
         txt.config(font=("Helvetica bold", 26))
         txt.grid(row=0, column=1, sticky="e")
+
+    def setInstallStage(self):
+        self.installFrame.updateInstallStage()
 
 if __name__ == '__main__':
     BitInstaller().mainloop()
