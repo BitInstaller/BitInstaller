@@ -1,7 +1,7 @@
 # BitInstaller
 The Official BitInstaller Repository. Create Windows Installation Media On MacOS
 
-![App Screenshot](https://raw.githubusercontent.com/ShoneGK/BitInstaller/main/github/Screenshot.png)
+![App Screenshot](https://raw.githubusercontent.com/ShoneGK/BitInstaller/main/github/Screenshot.png?token=GHSAT0AAAAAACERDHEBHRC3MEZY4Y6VRKXIZGYMZTA)
 
 **Project Description:**
 
