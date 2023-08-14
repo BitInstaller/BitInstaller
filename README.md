@@ -39,6 +39,9 @@ To install BitInstaller on your macOS system, follow these simple steps:
 2. Navigate to the project directory
 3. Run the installer script: `python main.py`
 
+*Note: to package up the project into a .dmg run the following command*
+`sh build.sh && sh package.sh`
+
 **Usage:**
 
 1. Launch BitInstaller.

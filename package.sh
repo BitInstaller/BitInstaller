@@ -1,5 +1,8 @@
 # package up the executible into a volume
 
+mkdir dist/dmg
+mv dist/BitInstaller.app dist/dmg/BitInstaller.app
+
 create-dmg \
   --volname "BitInstaller" \
   --volicon "logo.png" \
