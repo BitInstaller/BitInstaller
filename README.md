@@ -25,7 +25,9 @@ WARNING: POORLY WRITTEN CODE AHEAD
 2. Download BitInstaller.dmg
 3. Double-click on the DMG and press open
 4. Drag the app into the Applications folder
-*Note(this is because double clicking will result in an unverified developer error)*
+ 
+**Note(the following is because double clicking will result in an unverified developer error)**
+
 5. Go to the Applications folder on Finder
 6. Right-click on BitInstaller and select open
 4. Accept any unverified developer warnings
