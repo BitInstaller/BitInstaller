@@ -9,7 +9,7 @@ from bitinstaller.core import InstallationEngine
 from tkinter.messagebox import askyesno
 from tkinter.messagebox import showerror
 import threading
-
+import os
 
 __author__ = "SGK"
 __license__ = "MIT"
@@ -22,9 +22,14 @@ class BitInstaller(tk.Tk):
         self.title("BitInstaller " + __version__)
         self.configure(bg="#232729")
         self.geometry("867x294")
+        self.resizable(False,False)
+
 
         self.selectedISO = ""
         self.selectedDrive = ""
+
+        baseDir = os.path.dirname(__file__)
+        self.file_path = os.path.join(baseDir, './logo.png')
 
         self.runStartupFrame()
 
@@ -98,7 +103,7 @@ class BitInstaller(tk.Tk):
         self.runConfirmationNotification()
         
     def renderLogo(self, master):
-        image = Image.open("logo.png")
+        image = Image.open(self.file_path)
         resized_image = image.resize((70, 70))
         self.img = ImageTk.PhotoImage(resized_image)
         logo_image_label = Label(
