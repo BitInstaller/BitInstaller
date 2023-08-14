@@ -33,7 +33,7 @@ class InstallerFrame(Frame):
         # during install.wim
         elif self.currentInstallStage == 1:
             self.installProgressLabel.destroy()
-            self.installProgressLabel = Label(self.master, text="Please Wait\nOn The Final Stretch", bg="#232729")
+            self.installProgressLabel = Label(self.master, text="Please Wait\nSplitting Wimfile", bg="#232729")
             self.installProgressLabel.config(font=("Courier", 14))
             self.installProgressLabel.grid(row=1, column=1)
 

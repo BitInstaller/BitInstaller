@@ -19,7 +19,19 @@ WARNING: POORLY WRITTEN CODE AHEAD
 
 - **Bootable Windows Media:** Easily create bootable Windows installation media for use on various devices.
 
-**Installation:**
+**Installation**
+*Binaries are finally here!*
+1. Go to the Github releses
+2. Download BitInstaller.dmg
+3. Double-click on the DMG and press open
+4. Drag the app into the Applications folder
+*Note(this is because double clicking will result in an unverified developer error)*
+5. Go to the Applications folder on Finder
+6. Right-click on BitInstaller and select open
+4. Accept any unverified developer warnings
+
+
+**Building:**
 
 To install BitInstaller on your macOS system, follow these simple steps:
 
@@ -27,14 +39,13 @@ To install BitInstaller on your macOS system, follow these simple steps:
 2. Navigate to the project directory
 3. Run the installer script: `python main.py`
 
-**Binaries coming soon!**
-
 **Usage:**
 
 1. Launch BitInstaller.
 2. Select the Windows ISO file you wish to burn.
 3. Choose your target storage media (e.g., USB drive).
 4. Sit back and wait, this can take up to half an hour depending on your device
+5. If the program says "Splitting Wimfile" just wait. This process takes a very long time
 
 **Future Developments:**
 

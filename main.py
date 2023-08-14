@@ -10,6 +10,7 @@ from tkinter.messagebox import askyesno
 from tkinter.messagebox import showerror
 import threading
 import os
+from subprocess import Popen, PIPE
 
 __author__ = "SGK"
 __license__ = "MIT"
@@ -38,11 +39,20 @@ class BitInstaller(tk.Tk):
         self.renderLogo(self.start_display_frame)
 
         StartupFrame(self.start_display_frame, self.moveToConfirmation)
+
         #InstalledFrame(self.start_display_frame)
 
         self.start_display_frame.grid()
 
     def runConfirmationNotification(self):
+        
+        try:
+            command= Popen(
+            ["wimlib-imagex", "--version"], stdout= PIPE)
+        except Exception:
+            showerror("Error", "package 'wimlib-imagex' was not found!, try running brew install wimlib")
+            return
+        
         answer = askyesno("Warning", "WARNING: ALL OF THE DATA ON THE TARGET DRIVE WILL BE DESTROYED!, ARE YOU SURE YOU WANT TO CONTENUE")
         print(answer)
         
