@@ -6,7 +6,7 @@ The Official BitInstaller Repository. Create Windows Installation Media On MacOS
 
 WARNING: POORLY WRITTEN CODE AHEAD
 
-**Project Description:**
+# Project Description:
 
   BitInstaller is a basic GUI application that burns windows ISO's on MacOS
   
@@ -20,7 +20,7 @@ WARNING: POORLY WRITTEN CODE AHEAD
 
 - **Bootable Windows Media:** Easily create bootable Windows installation media for use on various devices.
 
-**Installation**
+# Installation
 *Binaries are finally here!*
 1. Go to the Github releses
 2. Download BitInstaller.dmg
@@ -33,25 +33,24 @@ WARNING: POORLY WRITTEN CODE AHEAD
 6. Right-click on BitInstaller and select open
 4. Accept any unverified developer warnings
 
-
-**Building:**
-
-To install BitInstaller on your macOS system, follow these simple steps:
-
-1. Clone the repository: `git clone https://github.com/ShoneGK/BitInstaller`
-2. Navigate to the project directory
-3. Run the installer script: `python main.py`
-
-*Note: to package up the project into a .dmg run the following command*
-`sh build.sh && sh package.sh`
-
-**Usage:**
+# Usage:
 
 1. Launch BitInstaller.
 2. Select the Windows ISO file you wish to burn.
 3. Choose your target storage media (e.g., USB drive).
 4. Sit back and wait, this can take up to half an hour depending on your device
 5. If the program says "Splitting Wimfile" just wait. This process takes a very long time
+
+# Building:
+
+To build BitInstaller on your macOS system from source, follow these simple steps:
+
+1. Clone the repository: `git clone https://github.com/ShoneGK/BitInstaller`
+2. Navigate to the project directory
+3. Run the main script: `python main.py`
+
+*Note: to package up the project into a .dmg run the following command*
+`sh build.sh && sh package.sh`
 
 **Future Developments:**
 
