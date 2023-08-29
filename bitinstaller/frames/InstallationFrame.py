@@ -26,16 +26,22 @@ class InstallerFrame(Frame):
     def updateInstallMessage(self):
         # Begining
         if self.currentInstallStage == 0:
-            self.installProgressLabel = Label(self.master, text="Please Wait\nInstalling Windows for you!", bg="#232729")
+            self.installProgressLabel = Label(
+                self.master,
+                text="Please Wait\nInstalling Windows for you!",
+                bg="#232729",
+            )
             self.installProgressLabel.config(font=("Courier", 14))
             self.installProgressLabel.grid(row=1, column=1)
 
         # during install.wim
         elif self.currentInstallStage == 1:
             self.installProgressLabel.destroy()
-            self.installProgressLabel = Label(self.master, text="Please Wait\nSplitting Wimfile", bg="#232729")
+            self.installProgressLabel = Label(
+                self.master, text="Please Wait\nSplitting Wimfile", bg="#232729"
+            )
             self.installProgressLabel.config(font=("Courier", 14))
             self.installProgressLabel.grid(row=1, column=1)
 
     def updateInstallStage(self):
-        self.currentInstallStage+=1
+        self.currentInstallStage += 1

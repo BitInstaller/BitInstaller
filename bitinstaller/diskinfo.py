@@ -2,6 +2,7 @@ import platform
 import subprocess
 import re
 
+
 class GetDiskInfo:
     def __init__(self):
         self.currentos = platform.system()
@@ -42,14 +43,14 @@ class GetDiskInfo:
             self.driveData.update(addon)
 
         return self.driveData
-    
+
     def formatDriveData(self):
         for drive in self.driveData:
             self.formattedDriveData.append(drive + "   " + self.driveData[drive])
         return self.formattedDriveData
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("RAW")
     print(GetDiskInfo().driveData)
     print("FORMATTED")

@@ -23,6 +23,8 @@ class InstalledFrame(Frame):
         invisibleBoxThree = RoundedRectangle(**InvisibleUIRectdata)
         invisibleBoxThree.grid(row=1, column=2)
 
-        self.installProgressLabel = Label(self.master, text="Sucess!\nWindows was installed!", bg="#232729")
+        self.installProgressLabel = Label(
+            self.master, text="Sucess!\nWindows was installed!", bg="#232729"
+        )
         self.installProgressLabel.config(font=("Courier", 14))
         self.installProgressLabel.grid(row=1, column=1)

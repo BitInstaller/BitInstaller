@@ -30,7 +30,9 @@ class StartupFrame(Frame):
         selectFileLabel = Label(self.master, text="Select File", bg="#232729")
         selectFileLabel.config(font=("Courier", 14))
         selectFileLabel.grid(row=1, column=1)
-        selectFileLabel.bind("<Button-1>", lambda e: self.getSelectedISO(getFileLocation()))
+        selectFileLabel.bind(
+            "<Button-1>", lambda e: self.getSelectedISO(getFileLocation())
+        )
 
         flashDiskLabel = Label(self.master, text="Flash!", bg="#232729")
         flashDiskLabel.config(font=("Courier", 14))

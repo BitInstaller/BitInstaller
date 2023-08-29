@@ -14,8 +14,9 @@ from subprocess import Popen, PIPE
 
 __author__ = "SGK"
 __license__ = "MIT"
-__version__ = "v0.1-0"
+__version__ = "v0.1-1"
 __status__ = "Development"
+
 
 class BitInstaller(tk.Tk):
     def __init__(self):
@@ -23,14 +24,13 @@ class BitInstaller(tk.Tk):
         self.title("BitInstaller " + __version__)
         self.configure(bg="#232729")
         self.geometry("867x294")
-        self.resizable(False,False)
-
+        self.resizable(False, False)
 
         self.selectedISO = ""
         self.selectedDrive = ""
 
         baseDir = os.path.dirname(__file__)
-        self.file_path = os.path.join(baseDir, './logo.png')
+        self.file_path = os.path.join(baseDir, "./logo.png")
 
         self.runStartupFrame()
 
@@ -40,23 +40,25 @@ class BitInstaller(tk.Tk):
 
         StartupFrame(self.start_display_frame, self.moveToConfirmation)
 
-        #InstalledFrame(self.start_display_frame)
-
         self.start_display_frame.grid()
 
     def runConfirmationNotification(self):
-        
         try:
-            command= Popen(
-            ["wimlib-imagex", "--version"], stdout= PIPE)
+            command = Popen(["wimlib-imagex", "--version"], stdout=PIPE)
         except Exception:
-            showerror("Error", "package 'wimlib-imagex' was not found!, try running brew install wimlib")
+            showerror(
+                "Error",
+                "package 'wimlib-imagex' was not found!, try running brew install wimlib",
+            )
             return
-        
-        answer = askyesno("Warning", "WARNING: ALL OF THE DATA ON THE TARGET DRIVE WILL BE DESTROYED!, ARE YOU SURE YOU WANT TO CONTENUE")
+
+        answer = askyesno(
+            "Warning",
+            "WARNING: ALL OF THE DATA ON THE TARGET DRIVE WILL BE DESTROYED!, ARE YOU SURE YOU WANT TO CONTENUE",
+        )
         print(answer)
-        
-        if(answer == True):
+
+        if answer == True:
             installerThread = threading.Thread(target=self.beginInstallation)
             installerThread.start()
             return
@@ -65,44 +67,37 @@ class BitInstaller(tk.Tk):
             return
 
     def beginInstallation(self):
-            print(self.selectedDrive)
-            self.installEngine = InstallationEngine(self.selectedISO, self.selectedDrive)
-            self.start_display_frame.destroy()
-            # WARNING: SHOW NEW FRAME BEFORE BEGINING INSTALLATION
-            
-            self.installingFrame = Frame(self)
-            self.renderLogo(self.installingFrame)
+        print(self.selectedDrive)
+        self.installEngine = InstallationEngine(self.selectedISO, self.selectedDrive)
+        self.start_display_frame.destroy()
+        # WARNING: SHOW NEW FRAME BEFORE BEGINING INSTALLATION
 
-            self.installFrame = InstallerFrame(self.installingFrame)
-            self.installFrame.updateInstallMessage()            
-            self.installingFrame.grid()
+        self.installingFrame = Frame(self)
+        self.renderLogo(self.installingFrame)
 
-            # REAL INSTALLATION PART
+        self.installFrame = InstallerFrame(self.installingFrame)
+        self.installFrame.updateInstallMessage()
+        self.installingFrame.grid()
 
-            self.installEngine.mountSelectedISO()
-            print(self.installEngine.mountedISO+"/*")
-            
-            
-            self.installEngine.formatDrive()
-            self.installEngine.copyISOFiles()
-            self.after(int(2*1000)) # debug
+        # REAL INSTALLATION PART
 
-            self.installFrame.updateInstallStage()
-            self.installFrame.updateInstallMessage()
+        self.installEngine.mountSelectedISO()
+        print(self.installEngine.mountedISO + "/*")
 
-            self.installEngine.splitWimfile()
+        self.installEngine.formatDrive()
+        self.installEngine.copyISOFiles()
+        self.installFrame.updateInstallStage()
+        self.installFrame.updateInstallMessage()
+        self.installEngine.splitWimfile()
 
+        self.installFrame.destroy()
 
-            #self.after(int(2*1000)) # debug
-
-            self.installFrame.destroy()
-
-            InstalledFrame(self.installingFrame)
+        InstalledFrame(self.installingFrame)
 
     def moveToConfirmation(self, data_pipe):  # handle inputs from hosted frame
         print("RECEIVED: ", data_pipe)
 
-        if data_pipe["selectedDisk"] != '' and data_pipe["selectedISO"] != None:
+        if data_pipe["selectedDisk"] != "" and data_pipe["selectedISO"] != None:
             self.selectedDrive = data_pipe["selectedDisk"].split()
             self.selectedDrive = self.selectedDrive[0]
             self.selectedISO = data_pipe["selectedISO"]
@@ -111,7 +106,7 @@ class BitInstaller(tk.Tk):
             return
 
         self.runConfirmationNotification()
-        
+
     def renderLogo(self, master):
         image = Image.open(self.file_path)
         resized_image = image.resize((70, 70))
@@ -127,5 +122,6 @@ class BitInstaller(tk.Tk):
     def setInstallStage(self):
         self.installFrame.updateInstallStage()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     BitInstaller().mainloop()

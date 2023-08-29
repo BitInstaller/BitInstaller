@@ -5,7 +5,7 @@ cp -r dist/BitInstaller.app dist/dmg/BitInstaller.app
 
 create-dmg \
   --volname "BitInstaller" \
-  --volicon "logo.png" \
+  --volicon "AppIcon.png" \
   --window-pos 200 120 \
   --window-size 600 300 \
   --icon-size 100 \

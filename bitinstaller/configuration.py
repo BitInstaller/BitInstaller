@@ -2,6 +2,7 @@ from bitinstaller.layout import themeConfig
 from bitinstaller.layout import comboboxLayout
 from bitinstaller.layout import scrollbarLayout
 
+
 class TkGraphicsConfig:
     def __init__(self, master, style):
         style.layout(*comboboxLayout)
@@ -24,4 +25,6 @@ class TkGraphicsConfig:
             darkcolor=[("active", "#454545"), ("!active", "#454545")],
             lightcolor=[("active", "#454545"), ("!active", "#454545")],
         )
-        style.map("TCombobox", background=[("active", "#232729")], arrowsize=[("active", 15)])
+        style.map(
+            "TCombobox", background=[("active", "#232729")], arrowsize=[("active", 15)]
+        )
