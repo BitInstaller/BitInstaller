@@ -1,4 +1,5 @@
-# BitInstaller
+# BitInstaller <img src="https://raw.githubusercontent.com/ShoneGK/BitInstaller/main/AppIcon.png" alt="OSXLogo" width="50" style="vertical-align: middle; margin-bottom: 0px;" />
+
 The Official BitInstaller Repository. Create Windows Installation Media On MacOS
 
 ![App Screenshot](https://raw.githubusercontent.com/ShoneGK/BitInstaller/main/github/Screenshot.png?token=GHSAT0AAAAAACERDHEBHRC3MEZY4Y6VRKXIZGYMZTA)
